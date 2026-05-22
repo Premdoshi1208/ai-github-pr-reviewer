@@ -1,0 +1,45 @@
+name: Learner CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "services/learner/**"
+      - ".github/workflows/learner.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  AWS_ACCOUNT_ID: "604175033417"
+  AWS_ROLE_ARN: arn:aws:iam::604175033417:role/github-actions-ai-reviewer
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE_URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/learner
+
+          docker build -t $IMAGE_URI:latest -t $IMAGE_URI:${{ github.sha }} -f services/learner/Dockerfile services/learner
+
+          docker push $IMAGE_URI:latest
+          docker push $IMAGE_URI:${{ github.sha }}
