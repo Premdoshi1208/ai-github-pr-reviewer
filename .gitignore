@@ -1,0 +1,9 @@
+.env
+*.env
+.DS_Store
+__pycache__/
+*.pyc
+venv/
+.venv/
+.terraform/
+infra/k8s/secret.yaml

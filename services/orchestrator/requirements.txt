@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+httpx
+pydantic-settings
+sqlalchemy[asyncio]
+asyncpg
+langgraph
+langfuse
+groq
+openinference-instrumentation-groq
+PyJWT
+cryptography
+prometheus-fastapi-instrumentator
