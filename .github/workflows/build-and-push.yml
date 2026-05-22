@@ -19,36 +19,37 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - name: gateway
-            context: .
-            dockerfile: services/gateway/Dockerfile
+            context: services/gateway
+            dockerfile: Dockerfile
             repo: gateway
 
           - name: webhook
-            context: .
-            dockerfile: services/webhook/Dockerfile
+            context: services/webhook
+            dockerfile: Dockerfile
             repo: webhook
 
           - name: orchestrator
-            context: .
-            dockerfile: services/orchestrator/Dockerfile
+            context: services/orchestrator
+            dockerfile: Dockerfile
             repo: orchestrator
 
           - name: reviewer
-            context: .
-            dockerfile: services/reviewer/Dockerfile
+            context: services/reviewer
+            dockerfile: Dockerfile
             repo: reviewer
 
           - name: learner
-            context: .
-            dockerfile: services/learner/Dockerfile
+            context: services/learner
+            dockerfile: Dockerfile
             repo: learner
 
           - name: evaluate
-            context: .
-            dockerfile: scripts/Dockerfile
+            context: scripts
+            dockerfile: Dockerfile
             repo: evaluate
 
     steps:
