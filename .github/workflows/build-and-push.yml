@@ -69,7 +69,7 @@ jobs:
         run: |
           IMAGE_URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${{ matrix.repo }}
 
-          docker build -t $IMAGE_URI:latest -t $IMAGE_URI:${{ github.sha }} -f ${{ matrix.dockerfile }} ${{ matrix.context }}
+          docker build -t $IMAGE_URI:latest -t $IMAGE_URI:${{ github.sha }} -f ${{ matrix.context }}/${{ matrix.dockerfile }} ${{ matrix.context }}
 
           docker push $IMAGE_URI:latest
           docker push $IMAGE_URI:${{ github.sha }}
