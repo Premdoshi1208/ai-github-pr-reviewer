@@ -22,32 +22,32 @@ jobs:
       matrix:
         include:
           - name: gateway
-            context: services/gateway
+            context: .
             dockerfile: services/gateway/Dockerfile
             repo: gateway
 
           - name: webhook
-            context: services/webhook
+            context: .
             dockerfile: services/webhook/Dockerfile
             repo: webhook
 
           - name: orchestrator
-            context: services/orchestrator
+            context: .
             dockerfile: services/orchestrator/Dockerfile
             repo: orchestrator
 
           - name: reviewer
-            context: services/reviewer
+            context: .
             dockerfile: services/reviewer/Dockerfile
             repo: reviewer
 
           - name: learner
-            context: services/learner
+            context: .
             dockerfile: services/learner/Dockerfile
             repo: learner
 
           - name: evaluate
-            context: scripts
+            context: .
             dockerfile: scripts/Dockerfile
             repo: evaluate
 
