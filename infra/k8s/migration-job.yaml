@@ -3,15 +3,14 @@ kind: Job
 metadata:
   name: db-migrate
 spec:
-  backoffLimit: 3
+  backoffLimit: 2
   template:
     spec:
       restartPolicy: Never
       containers:
         - name: migrate
-          image: 604175033417.dkr.ecr.us-east-1.amazonaws.com/webhook:latest
-          workingDir: /db
-          command: ["alembic", "-c", "/db/alembic.ini", "upgrade", "head"]
+          image: 604175033417.dkr.ecr.us-east-1.amazonaws.com/migration:latest
+          imagePullPolicy: Always
           env:
             - name: DATABASE_URL
               valueFrom:
