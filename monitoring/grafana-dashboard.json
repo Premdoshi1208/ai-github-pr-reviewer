@@ -71,7 +71,7 @@
       "id": 2,
       "title": "Gateway — Request Rate (req/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 1 },
       "fieldConfig": {
         "defaults": {
@@ -81,7 +81,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=\"gateway\"}[5m])) by (method, handler, status)",
           "legendFormat": "{{method}} {{handler}} {{status}}"
         }
@@ -91,7 +91,7 @@
       "id": 3,
       "title": "Gateway — p99 Latency (s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 1 },
       "fieldConfig": {
         "defaults": {
@@ -101,12 +101,12 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=\"gateway\"}[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{app=\"gateway\"}[5m])) by (le))",
           "legendFormat": "p50"
         }
@@ -116,7 +116,7 @@
       "id": 4,
       "title": "Gateway — Error Rate (5xx/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 1 },
       "fieldConfig": {
         "defaults": {
@@ -126,8 +126,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=\"gateway\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=\"gateway\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx errors"
         }
       ]
@@ -143,7 +143,7 @@
       "id": 11,
       "title": "Webhook — Request Rate (req/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 10 },
       "fieldConfig": {
         "defaults": {
@@ -153,7 +153,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=\"webhook\"}[5m])) by (method, handler, status)",
           "legendFormat": "{{method}} {{handler}} {{status}}"
         }
@@ -163,7 +163,7 @@
       "id": 12,
       "title": "Webhook — p99 Latency (s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 10 },
       "fieldConfig": {
         "defaults": {
@@ -173,12 +173,12 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=\"webhook\"}[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{app=\"webhook\"}[5m])) by (le))",
           "legendFormat": "p50"
         }
@@ -188,7 +188,7 @@
       "id": 13,
       "title": "Webhook — Error Rate (5xx/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 10 },
       "fieldConfig": {
         "defaults": {
@@ -198,8 +198,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=\"webhook\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=\"webhook\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx errors"
         }
       ]
@@ -215,7 +215,7 @@
       "id": 21,
       "title": "Orchestrator — Request Rate (req/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 19 },
       "fieldConfig": {
         "defaults": {
@@ -225,7 +225,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=\"orchestrator\"}[5m])) by (method, handler, status)",
           "legendFormat": "{{method}} {{handler}} {{status}}"
         }
@@ -235,7 +235,7 @@
       "id": 22,
       "title": "Orchestrator — p99 Latency (s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 19 },
       "fieldConfig": {
         "defaults": {
@@ -245,12 +245,12 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=\"orchestrator\"}[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{app=\"orchestrator\"}[5m])) by (le))",
           "legendFormat": "p50"
         }
@@ -260,7 +260,7 @@
       "id": 23,
       "title": "Orchestrator — Error Rate (5xx/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 19 },
       "fieldConfig": {
         "defaults": {
@@ -270,8 +270,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=\"orchestrator\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=\"orchestrator\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx errors"
         }
       ]
@@ -287,7 +287,7 @@
       "id": 31,
       "title": "Reviewer — Request Rate (req/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 28 },
       "fieldConfig": {
         "defaults": {
@@ -297,7 +297,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=\"reviewer\"}[5m])) by (method, handler, status)",
           "legendFormat": "{{method}} {{handler}} {{status}}"
         }
@@ -307,7 +307,7 @@
       "id": 32,
       "title": "Reviewer — p99 Latency (s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 28 },
       "fieldConfig": {
         "defaults": {
@@ -317,12 +317,12 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=\"reviewer\"}[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{app=\"reviewer\"}[5m])) by (le))",
           "legendFormat": "p50"
         }
@@ -332,7 +332,7 @@
       "id": 33,
       "title": "Reviewer — Error Rate (5xx/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 28 },
       "fieldConfig": {
         "defaults": {
@@ -342,8 +342,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=\"reviewer\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=\"reviewer\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx errors"
         }
       ]
@@ -359,7 +359,7 @@
       "id": 41,
       "title": "Learner — Request Rate (req/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 37 },
       "fieldConfig": {
         "defaults": {
@@ -369,7 +369,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=\"learner\"}[5m])) by (method, handler, status)",
           "legendFormat": "{{method}} {{handler}} {{status}}"
         }
@@ -379,7 +379,7 @@
       "id": 42,
       "title": "Learner — p99 Latency (s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 8, "y": 37 },
       "fieldConfig": {
         "defaults": {
@@ -389,12 +389,12 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=\"learner\"}[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{app=\"learner\"}[5m])) by (le))",
           "legendFormat": "p50"
         }
@@ -404,7 +404,7 @@
       "id": 43,
       "title": "Learner — Error Rate (5xx/s)",
       "type": "timeseries",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 8, "w": 8, "x": 16, "y": 37 },
       "fieldConfig": {
         "defaults": {
@@ -414,8 +414,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=\"learner\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=\"learner\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx errors"
         }
       ]
@@ -431,7 +431,7 @@
       "id": 51,
       "title": "Total Request Rate (all services)",
       "type": "stat",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 4, "w": 6, "x": 0, "y": 46 },
       "fieldConfig": {
         "defaults": {
@@ -449,7 +449,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(rate(http_requests_total{app=~\"gateway|webhook|orchestrator|reviewer|learner\"}[5m]))",
           "legendFormat": "req/s"
         }
@@ -459,7 +459,7 @@
       "id": 52,
       "title": "Total Error Rate (all services)",
       "type": "stat",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 4, "w": 6, "x": 6, "y": 46 },
       "fieldConfig": {
         "defaults": {
@@ -476,8 +476,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "sum(rate(http_requests_total{app=~\"gateway|webhook|orchestrator|reviewer|learner\", status=~\"5..\"}[5m]))",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "sum(rate(http_requests_total{app=~\"gateway|webhook|orchestrator|reviewer|learner\", status=\"5xx\"}[5m]))",
           "legendFormat": "5xx/s"
         }
       ]
@@ -486,7 +486,7 @@
       "id": 53,
       "title": "Overall p99 Latency",
       "type": "stat",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 4, "w": 6, "x": 12, "y": 46 },
       "fieldConfig": {
         "defaults": {
@@ -504,7 +504,7 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app=~\"gateway|webhook|orchestrator|reviewer|learner\"}[5m])) by (le))",
           "legendFormat": "p99"
         }
@@ -514,7 +514,7 @@
       "id": 54,
       "title": "Running Pods",
       "type": "stat",
-      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 4, "w": 6, "x": 18, "y": 46 },
       "fieldConfig": {
         "defaults": {
@@ -532,8 +532,8 @@
       },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
-          "expr": "count(up{job=\"kubernetes-pods\", namespace=\"default\"} == 1)",
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "count(up{job=\"kubernetes-pods\", namespace=\"default\", app=~\"gateway|webhook|orchestrator|reviewer|learner\"} == 1)",
           "legendFormat": "pods"
         }
       ]

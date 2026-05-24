@@ -1,0 +1,28 @@
+admin:
+  existingSecret: grafana
+  userKey: admin-user
+  passwordKey: admin-password
+
+service:
+  type: LoadBalancer
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        uid: prometheus
+        access: proxy
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        isDefault: true
+        jsonData:
+          httpMethod: POST
