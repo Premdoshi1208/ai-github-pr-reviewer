@@ -1,7 +1,27 @@
-global:
-  scrape_interval: 15s
+alertmanager:
+  enabled: false
 
-scrape_configs:
+kube-state-metrics:
+  enabled: false
+
+prometheus-node-exporter:
+  enabled: false
+
+prometheus-pushgateway:
+  enabled: false
+
+server:
+  persistentVolume:
+    enabled: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+
+extraScrapeConfigs: |
   - job_name: gateway
     static_configs:
       - targets:

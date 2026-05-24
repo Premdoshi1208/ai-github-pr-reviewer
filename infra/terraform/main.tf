@@ -61,7 +61,7 @@ module "eks" {
       principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/github-actions-ai-reviewer"
       policy_associations = {
         admin = {
-          policy_arn   = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
             type = "cluster"
           }
@@ -93,9 +93,11 @@ module "eks" {
     default = {
       instance_types = ["t3.micro"]
 
+      # t3.micro nodes expose only 4 Kubernetes pod slots each. Six nodes are
+      # needed for the demo app plus lightweight Prometheus/Grafana monitoring.
       min_size     = 1
-      max_size     = 3
-      desired_size = 2
+      max_size     = 6
+      desired_size = 6
     }
   }
 
@@ -166,15 +168,15 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier        = "${var.cluster_name}-postgres"
-  engine            = "postgres"
-  engine_version    = "15"
-  instance_class    = "db.t3.micro"
-  allocated_storage = 20
-  db_name           = "codereviewer"
-  username          = "dbadmin"
-  password          = var.db_password
-  multi_az          = false
+  identifier          = "${var.cluster_name}-postgres"
+  engine              = "postgres"
+  engine_version      = "15"
+  instance_class      = "db.t3.micro"
+  allocated_storage   = 20
+  db_name             = "codereviewer"
+  username            = "dbadmin"
+  password            = var.db_password
+  multi_az            = false
   publicly_accessible = false
   skip_final_snapshot = true
 
@@ -215,8 +217,8 @@ resource "aws_iam_policy" "lbc" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "elasticloadbalancing:*",
           "ec2:CreateSecurityGroup",
           "ec2:DeleteSecurityGroup",
