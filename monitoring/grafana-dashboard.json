@@ -127,7 +127,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=\"gateway\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=\"gateway\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx errors"
         }
       ]
@@ -199,7 +199,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=\"webhook\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=\"webhook\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx errors"
         }
       ]
@@ -271,7 +271,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=\"orchestrator\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=\"orchestrator\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx errors"
         }
       ]
@@ -343,7 +343,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=\"reviewer\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=\"reviewer\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx errors"
         }
       ]
@@ -415,7 +415,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=\"learner\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=\"learner\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx errors"
         }
       ]
@@ -477,7 +477,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(rate(http_requests_total{app=~\"gateway|webhook|orchestrator|reviewer|learner\", status=\"5xx\"}[5m]))",
+          "expr": "sum(rate(http_requests_total{app=~\"gateway|webhook|orchestrator|reviewer|learner\", status=\"5xx\"}[5m])) or vector(0)",
           "legendFormat": "5xx/s"
         }
       ]
@@ -512,7 +512,7 @@
     },
     {
       "id": 54,
-      "title": "Running Pods",
+      "title": "HTTP Services Up",
       "type": "stat",
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "gridPos": { "h": 4, "w": 6, "x": 18, "y": 46 },
